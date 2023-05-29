@@ -1,0 +1,93 @@
+<h1 style="text-align: center; color:black;">FORM VALIDATION</h1>
+
+<h2  style="color :darkblue;" id="err"></h2>
+
+<table border="1" cellpading="20" cellspacing="20" style="margin: auto; background-color: darkgrey;">
+    <tr>
+        <td>first_name</td>
+        <td><input type="text" id="first_name"></td>
+    </tr>
+    <tr>
+        <td>last_name</td>
+        <td><input type="text" id="last_name"></td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td><input type="text" id="email"></td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td><input type="text" id="password"></td>
+    </tr>
+    <tr>
+        <td>conform_password</td>
+        <td><input type="text" id="conform_password"></td>
+    </tr>
+    <tr>
+        <td colspan="20"><input type="button" onclick="save()" value="SUBMIT"></td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+
+    const save = () =>{
+
+        var nameformat = /^[A-Za-z]+$/
+        var mailFormat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var f_name = document.getElementById("first_name").value;
+        var l_name = document.getElementById("last_name").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var conform_password = document.getElementById("conform_password").value;
+
+    try{
+
+        if(!f_name){
+           throw "please fill the first name file..";
+            return false;
+        }
+       else if(!f_name.match(nameformat)){
+            throw "first name is not valid..";
+            return false;
+        }
+        
+        if(!l_name){
+            throw "please fill the last name file..";
+            return false;
+        }
+       else if(!l_name.match(nameformat)){
+            throw "last name is not valid..";
+            return false;
+        }
+        if(!email){
+            throw "please fill email file..";
+            return false;
+        }
+        if(!email.match(mailFormat)){
+            throw "email is not valid..";
+            return false;
+        }
+        if(!password){
+           throw "please fill password file..";
+            return false;
+        }
+        else if(password.length < 8 || password.length > 16){
+            throw "password not valid..";
+            return false;
+        }
+        if(password != conform_password){
+           throw "password not match..";
+            return false;
+        }
+        else{
+            let ans;
+            document.getElementById('err').innerHTML=ans;
+        }
+    }      
+
+catch(error){
+        document.getElementById('err').innerHTML=error;
+    }
+}
+
+</script>
